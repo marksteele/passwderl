@@ -1,0 +1,8 @@
+*.beam
+.eunit
+deps/*
+ebin/*
+.rebar/
+.*_plt
+priv/
+c_src/*.o

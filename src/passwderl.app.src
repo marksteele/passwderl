@@ -1,0 +1,14 @@
+{application, passwderl,
+ [
+  {description, "An Erlang library to access Linux passwd functions"},
+  {vsn, "1"},
+  {modules, [
+             passwderl
+            ]},
+  {registered, []},
+  {applications, [
+                  kernel,
+                  stdlib
+                 ]},
+  {env, []}
+ ]}.
