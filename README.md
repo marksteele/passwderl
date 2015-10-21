@@ -3,7 +3,7 @@
 API
 ===
 
-#passwderl_pwd{}
+\#passwderl_pwd{}
 ----------------
 
 Lookup functions return a record defined in passwderl.hrl which
