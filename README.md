@@ -38,3 +38,13 @@ setegid(pos_integer()) -> ok | error.
 
 Takes as an argument an integer of a group id, and attempts
 to set the effective group id to the provided value.
+
+getuid() -> integer().
+----------------------
+
+Returns the user id for the calling process.
+
+geteuid() -> integer().
+----------------------
+
+Returns the effective user id for the calling process.
