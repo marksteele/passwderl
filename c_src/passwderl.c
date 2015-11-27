@@ -21,6 +21,20 @@ static ERL_NIF_TERM create_term(ErlNifEnv *env, struct passwd *pwd)
 }
 
 static ERL_NIF_TERM
+passwderl_getuid(ErlNifEnv* env, int argc, const ERL_NIF_TERM argv[])
+{
+  int id = getuid();
+  return enif_make_int(env, id);
+}
+
+static ERL_NIF_TERM
+passwderl_geteuid(ErlNifEnv* env, int argc, const ERL_NIF_TERM argv[])
+{
+  int id = geteuid();
+  return enif_make_int(env, id);
+}
+
+static ERL_NIF_TERM
 passwderl_getpwuid(ErlNifEnv* env, int argc, const ERL_NIF_TERM argv[])
 {
   int uid;
@@ -87,7 +101,9 @@ static ErlNifFunc nif_funcs[] =
   {"nif_getpwnam", 1, passwderl_getpwnam},
   {"nif_getpwuid", 1, passwderl_getpwuid},
   {"nif_seteuid", 1, passwderl_seteuid},
-  {"nif_setegid", 1, passwderl_setegid}
+  {"nif_setegid", 1, passwderl_setegid},
+  {"nif_getuid", 0, passwderl_getuid},
+  {"nif_geteuid", 0, passwderl_geteuid}
 };
 
 ERL_NIF_INIT(passwderl, nif_funcs, NULL, NULL, NULL, NULL)

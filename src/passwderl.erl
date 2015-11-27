@@ -3,7 +3,9 @@
          getpwnam/1,
          getpwuid/1,
          seteuid/1,
-         setegid/1
+         setegid/1,
+         getuid/0,
+         geteuid/0
         ]).
 
 -compile([no_native]).
@@ -41,6 +43,14 @@ seteuid(Uid) when is_integer(Uid) ->
 setegid(Gid) when is_integer(Gid) ->
   nif_setegid(Gid).
 
+-spec getuid() -> pos_integer().
+getuid() ->
+  nif_getuid().
+
+-spec geteuid() -> pos_integer().
+geteuid() ->
+  nif_geteuid().
+
 not_loaded(Line) ->
     erlang:nif_error({not_loaded, [{module, ?MODULE}, {line, Line}]}).
 
@@ -54,4 +64,10 @@ nif_seteuid(_) ->
   ?NOT_LOADED.
 
 nif_setegid(_) ->
+  ?NOT_LOADED.
+
+nif_getuid() ->
+  ?NOT_LOADED.
+
+nif_geteuid() ->
   ?NOT_LOADED.
