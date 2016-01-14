@@ -1,8 +1,9 @@
 *.beam
 .eunit
 deps/*
-ebin/*
+_build
 .rebar/
 .*_plt
 priv/
 c_src/*.o
+rebar.lock
