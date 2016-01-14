@@ -17,15 +17,18 @@
 -include("passwderl.hrl").
 
 init() ->
-  PrivDir = case code:priv_dir(?MODULE) of
-              {error, _} ->
-                EbinDir = filename:dirname(code:which(?MODULE)),
-                AppPath = filename:dirname(EbinDir),
-                filename:join(AppPath, "priv");
-              Path ->
-                Path
-            end,
-  erlang:load_nif(filename:join(PrivDir, "passwderl"), 0).
+    SoName = case code:priv_dir(?MODULE) of
+        {error, bad_name} ->
+            case filelib:is_dir(filename:join(["..", priv])) of
+                true ->
+                    filename:join(["..", priv, ?MODULE]);
+                _ ->
+                    filename:join([priv, ?MODULE])
+            end;
+        Dir ->
+            filename:join(Dir, ?MODULE)
+    end,
+    erlang:load_nif(SoName, 0).
 
 -spec getpwuid(pos_integer()) -> #passwderl_pwd{}.
 getpwuid(Uid) when is_integer(Uid) ->
