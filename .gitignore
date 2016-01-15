@@ -8,3 +8,4 @@ _build
 priv/
 c_src/*.o
 rebar.lock
+c_src/*.d

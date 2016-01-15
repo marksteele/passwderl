@@ -1,0 +1,20 @@
+#!/usr/bin/env escript
+%% -*- erlang -*-
+
+main([Command|Arg]) ->
+  true = code:add_path("../ebin"),
+  application:set_env(code,sopath,"../priv"),
+  case Command of
+    "getpwnam" ->
+      io:format("~p~n",[passwderl:getpwnam(hd(Arg))]);
+    "getpwuid" ->
+      io:format("~p~n",[passwderl:getpwuid(list_to_integer(hd(Arg)))]);
+    "getuid" ->
+      io:format("~p~n",[passwderl:getuid()]);
+    "geteuid" ->
+      io:format("~p~n",[passwderl:getuid()]);
+    "getgid" ->
+      io:format("~p~n",[passwderl:getgid()]);
+    "getegid" ->
+      io:format("~p~n",[passwderl:getegid()])
+  end.
